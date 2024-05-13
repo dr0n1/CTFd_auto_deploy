@@ -1,6 +1,6 @@
 #!/bin/bash
 # Author: dr0n1
-# Version：0.1 beta
+# Version：1.0 beta
 # Email: 1930774374@qq.com
 
 [ $(id -u) != "0" ] && {
