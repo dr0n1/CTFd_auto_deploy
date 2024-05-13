@@ -8,7 +8,7 @@
 
 **支持的插件**
 
-1：ctfd-whale
+1：ctfd-whale</br>
 2：ctfd-pages-theme
 
 
@@ -18,6 +18,12 @@
 git clone https://github.com/dr0n1/ctfd-auto-deploy
 chmod 777 install.sh
 ./auto_deploy.sh
+```
+
+或者
+
+```bash
+bash <(curl -s https://raw.githubusercontent.com/dr0n1/ctfd-auto-deploy/main/install.sh)
 ```
 
 **实际使用**
