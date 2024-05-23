@@ -195,6 +195,11 @@ EOM
 }
 
 function build_ctfd() {
+    read -p "容器不出网 (true/false):" internal
+    if [[ "${internal,,}" == "false" ]]; then
+        sed -i "s/internal: true/internal: false/g" ./docker-compose.yml
+    fi
+
     read -p "web访问ctfd端口 [80]:" port
     [ ! -n "${port}" ] && { port="80"; }
     sed -i "s/- 80:80/- ${port}:80/g" ./docker-compose.yml
@@ -215,4 +220,3 @@ install_dockercompose
 download_ctfd
 install_plugins
 build_ctfd
-
