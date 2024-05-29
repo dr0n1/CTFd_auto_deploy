@@ -116,7 +116,7 @@ function download_ctfd() {
 }
 
 function install_plugins() {
-    read -p "是否添加 [ctfd-whale] 插件？(yes/no): " choice1
+    read -p "是否添加 [ctfd-whale] 插件？(yes/no 默认yes): " choice1
     choice1=$(echo "$choice1" | tr '[:upper:]' '[:lower:]')
     [ ! -n "${choice1}" ] && { choice1="yes"; }
     if [[ "$choice1" == "yes" || "$choice1" == "y" ]]; then
@@ -127,7 +127,7 @@ function install_plugins() {
         error "无效的选择"
     fi
 
-    read -p "是否添加 [ctfd-pages-theme] 插件？(yes/no): " choice2
+    read -p "是否添加 [ctfd-pages-theme] 插件？(yes/no 默认yes): " choice2
     choice2=$(echo "$choice2" | tr '[:upper:]' '[:lower:]')
     [ ! -n "${choice2}" ] && { choice2="yes"; }
     if [[ "$choice2" == "yes" || "$choice2" == "y" ]]; then
@@ -152,19 +152,19 @@ function install_plugins_whale() {
     sed -i "s/=your_token/=${pass3}/g" ./docker-compose.yml
     sed -i 's/ctfd_frp-containers/ctfd_containers/g' ./CTFd/plugins/ctfd-whale/utils/docker.py
 
-    read -p "输入你的域名/ip [127.0.0.1.nip.io]:" domain
+    read -p "输入你的域名/ip (默认 127.0.0.1.nip.io):" domain
     [ ! -n "${domain}" ] && { domain="127.0.0.1.nip.io"; }
     sed -i "s/127.0.0.1.nip.io/${domain}/g" ./docker-compose.yml
     sed -i "s/127.0.0.1.nip.io/${domain}/g" ./CTFd/plugins/ctfd-whale/utils/setup.py
     sed -i "s/\"127.0.0.1\"/\"${domain}\"/g" ./CTFd/plugins/ctfd-whale/utils/setup.py
     sed -i "s/\"127.0.0.1\"/\"${domain}\"/g" ./CTFd/plugins/ctfd-whale/utils/routers/frp.py
 
-    read -p "输入http靶机映射端口 [8080]:" httpPort
+    read -p "输入http靶机映射端口 (默认 8080):" httpPort
     [ ! -n "${httpPort}" ] && { httpPort="8080"; }
     sed -i "s/8080:8080/${httpPort}:8080\n      - 10000-10100:10000-10100/g" ./docker-compose.yml
     sed -i "s/8080/${httpPort}/g" ./CTFd/plugins/ctfd-whale/utils/setup.py
 
-    read -p "输入direct模式映射端口范围 [10000-10100]:" directPort
+    read -p "输入direct模式映射端口范围 (默认 10000-10100):" directPort
     [ ! -n "${directPort}" ] && { directPort="10000-10100"; }
     sed -i "s/10100/${directPort#*-}/g" ./docker-compose.yml
     sed -i "s/10000/${directPort%-*}/g" ./docker-compose.yml
@@ -195,12 +195,13 @@ EOM
 }
 
 function build_ctfd() {
-    read -p "容器不出网 (true/false):" internal
-    if [[ "${internal,,}" == "false" ]]; then
+    read -p "容器是否出网 (yes/no 默认no):" internal
+    [ ! -n "${internal}" ] && { internal=no; }
+    if [[ "${internal,,}" == "yes" ]]; then
         sed -i "s/internal: true/internal: false/g" ./docker-compose.yml
     fi
 
-    read -p "web访问ctfd端口 [80]:" port
+    read -p "web访问ctfd端口 (默认 80):" port
     [ ! -n "${port}" ] && { port="80"; }
     sed -i "s/- 80:80/- ${port}:80/g" ./docker-compose.yml
 
