@@ -6,13 +6,13 @@
 
 
 
-**目前支持的插件**
+## 目前支持的插件
 
-1：ctfd-whale</br>
+1：ctfd-whale  
 2：ctfd-pages-theme
 
 
-**使用方法**
+## 使用方法
 
 ```bash
 git clone https://github.com/dr0n1/CTFd_auto_deploy
@@ -26,7 +26,7 @@ chmod 777 install.sh
 bash <(curl -s https://raw.githubusercontent.com/dr0n1/CTFd_auto_deploy/main/install.sh)
 ```
 
-**实际使用**
+## 实际使用
 
 在网络畅通的情况下五分钟左右可以安装完毕
 
@@ -40,6 +40,6 @@ user	0m1.221s
 sys	0m3.712s
 ```
 
-**注意事项**
+## 注意事项
 
 如果选择了安装ctfd-whale，则需要谨慎选择CTFd的版本，脚本中默认使用V3.7.3版本
