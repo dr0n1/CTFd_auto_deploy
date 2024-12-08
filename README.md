@@ -6,7 +6,7 @@
 
 
 
-**支持的插件**
+**目前支持的插件**
 
 1：ctfd-whale</br>
 2：ctfd-pages-theme
@@ -39,3 +39,7 @@ real	3m40.916s
 user	0m1.221s
 sys	0m3.712s
 ```
+
+**注意事项**
+
+如果选择了安装ctfd-whale，则需要谨慎选择CTFd的版本，脚本中默认使用V3.7.3版本

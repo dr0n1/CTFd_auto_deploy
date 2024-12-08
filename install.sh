@@ -104,7 +104,7 @@ function download_ctfd() {
     while [ $count -lt $retries ]; do
         ((count++))
         info "正在进行第 $count 次下载..."
-        git clone --depth 1 https://github.com/CTFd/CTFd .
+        git clone --depth 1 -b 3.7.3 https://github.com/CTFd/CTFd .
         if [ $? -eq 0 ]; then
             info "ctfd下载成功！"
             return 0
